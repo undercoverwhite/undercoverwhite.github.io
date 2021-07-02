@@ -1,6 +1,6 @@
 {
-	"1" : ("Fumée","Vapeur"),
-	"2" : ("Sucette", "Chewing-gum"),
-	"3" : ("Poivre", "Sel"),
-	"4" : ("Blé" , "Maïs")
+	"1": ["Fumée","Vapeur"],
+	"2": ["Sucette", "Chewing-gum"],
+	"3": ["Poivre", "Sel"],
+	"4": ["Blé" , "Maïs"]
 }
