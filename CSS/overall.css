@@ -23,7 +23,7 @@ HTML, HTML *{
 body{
     padding: 50px;
     background: var(--background-body);
-    --background-body: #f5f5f5;
+    --background-body: #52807a;
 
     --sq-global: 80px;
 }
