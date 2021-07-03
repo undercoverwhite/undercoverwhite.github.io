@@ -21,9 +21,9 @@ HTML, HTML *{
 }
 
 body{
-    padding: 50px;
+    padding: 8vh 10vw;
     background: var(--background-body);
-    --background-body: #40827a;
+    --background-body: #fafafa;
 
     --sq-global: 80px;
 }
@@ -74,9 +74,6 @@ img{
 }
 
 button, input{
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   display: var(--display);
   --display: inline-block;
   margin: 0px;
@@ -293,6 +290,12 @@ ul.nobullet{
 
 .nocolor {
     color: unset !important;
+}
+
+.no-appearance {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .display-none, .none {

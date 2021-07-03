@@ -42,36 +42,100 @@
         <nav></nav>
     </header>
 
+
+    <!--
+        After the page is loaded, each $('.PAGE') has an attribute page=X
+        where X = 0, 1, 2,... (its index in $('main') ).
+
+        HOW TO ADD AN ELEMENT $('el') LEADING TO ANOTHER PHASE :
+            (el is preferably a button)
+
+            <el class="GOTO_JS ...">...
+                -> leads to next phase regardless of both their .attr('page')
+
+            <el class="GOTO_JS ..." next="X">...
+                -> X is an int
+                -> leads to phase X regardless of the current phase.
+
+            <el class="GOTO_JS ..." next="plusX">...
+                -> X is an int
+                -> leads to (current + X) phase.
+
+            <el class="GOTO_JS ..." next="moinsX">...
+                -> X is an int
+                -> leads to (current - X) phase.
+    -->
+
     <main id="var_container">
 
         <section id="WELCOME_MENU" class="PHASE">
             <h1>Mr. White sous couverture</h1>
 
-            <button class="simple hi1 background center-align GOTO_JS" next="plus2">
-                Commencer avec les mots par défaut.
-            </button>
+            <div class="flex">
+                <button class="simple hi1 background center-align GOTO_JS" next="plus2">
+                    Commencer avec les mots par défaut.
+                </button>
 
-            <button class="simple hi2 background center-align GOTO_JS">
-                Commencer en rajoutant des mots personnels aux mots par défaut.
-            </button>
+                <button class="simple hi2 background center-align GOTO_JS">
+                    Commencer en rajoutant des mots personnels aux mots par défaut.
+                </button>
+            </div>
         </section>
+
+
 
         <section id="ADD_WORDS" class="PHASE">
             <h1>Rajouter des mots</h1>
-            <textarea class="simple light" placeholder="Écrire ici vos mots, séparés d'un retour à la ligne."></textarea>
 
-            <div class="flex simple nopadding">
-                <button class="GOTO_JS simple hi1 background">
+            <h2>Choix des mots</h2>
+            <div class="simple light">
+                À chaque manche, un nouveau groupe de mots est tiré au sort parmi tous ceux mis en jeux. Deux mots sont choisis au sein de ce groupe, de telle sorte qu'il n'est pas possible de savoir à l'avance lequel est le bon mot et lequel est celui de l'undercover.<br>
+
+                Il est donc intéressant d'avoir des groupes de trois, quatre, cinq mots à chaque fois.
+            </div>
+            <div class="choice_addWords flex display-none">
+                <input type="radio" name="ADD_WORDS" id="inp1_addWords" class="display-none" checked>
+                <label class="simple light" for="inp1_addWords">Ajouter les mots personnels aux mots de base.</label>
+
+                <input type="radio" name="ADD_WORDS" id="inp2_addWords" class="display-none">
+                <label class="simple light" for="inp2_addWords">Utiliser uniquement les mots personnels.</label>
+            </div><br>
+
+
+            <h2>Rajouter des mots</h2>
+            <div class="simple nopadding flex" id="flex_addWords">
+                <!--groupes rajoutés par JS-->
+            </div>
+
+            <div class="simple nopadding flex">
+                <div class="simple hi3 background crosshair" id="addToFlex_addWords">
+                    <b>Plus de groupes de mots.</b>
+                </div>
+                <div class="simple hi4 background crosshair" id="removeEmpty_addWords">
+                    <i>Supprimer les groupes de mots vides.</i>
+                </div>
+            </div>
+                <br>
+
+
+            <h2>Suite</h2>
+            <div class="flex simple nopadding" id="lastOptions_addWords">
+                <button class="GOTO_JS display-none" id="realVALIDATE_addWords"></button>
+
+                <button class="simple hi1 background" id="VALIDATE_addWords">
                     Valider
+
                 </button>
-                <button class="GOTO_JS simple hi4 background">
+                <button class="simple hi4 background" id="emptyAll_addWords">
                     Continuer sans rajouter de mots.
                 </button>
             </div>
         </section>
 
+
+
         <section id="CHARACTER_CHOOSE" class="PHASE display-none">
-            <h1>Joueur·se·s</h1>
+            <h1>Joueur·se·s (min 3)</h1>
 
 
             <div class="flex">
@@ -95,18 +159,21 @@
             </div>
 
             <div class="flex simple nopadding">
-            <button class="GOTO_JS simple hi4 background" next="moins1">
-                Retourner au choix des mots
-            </button>
-                <button class="GOTO_JS simple hi1 background">
+                <button class="GOTO_JS simple hi2 background">
                     Valider
+                </button>
+                <button class="GOTO_JS simple hi4 background" next="moins1">
+                    Retourner au choix des mots
                 </button>
             </div>
         </section>
 
+
+
         <section id="NEXT" class="PHASE display-none">
             BOUUUUUH end of the game bitches
         </section>
+
     </main>
 
     <footer>
@@ -119,7 +186,12 @@
     <script src="./JS/BOTTOM/toggle_package.js"></script>
     <script src="./JS/BOTTOM/overall.js"></script>
     <script src="./JS/BOTTOM/color.js"></script>
+
+
     <script src="./JS/GAME/0_phases.js"></script>
+    <script src="./JS/GAME/1_words.js"></script>
+
+
     <script src="./JS/pages.js"></script>
 
     <a name="bottom"></a>

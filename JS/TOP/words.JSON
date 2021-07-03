@@ -1,4 +1,4 @@
-words = {
+wordsJSON = {
 	"1": ["Fumée","Vapeur"],
 	"2": ["Sucette", "Chewing-gum"],
 	"3": ["Poivre", "Sel"],

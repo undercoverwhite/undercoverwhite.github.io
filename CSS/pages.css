@@ -3,3 +3,13 @@
     overflow: auto;
     padding: var(--width-shadow-main);
 }
+
+.choice_addWords input:checked + label {
+    background: var(--h1) !important;
+}
+
+/*- - - - - ADD WORDS - - - - -*/
+
+#flex_addWords {
+    --max: 350px;
+}
