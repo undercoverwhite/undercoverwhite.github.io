@@ -4,12 +4,27 @@
     padding: var(--width-shadow-main);
 }
 
-.choice_addWords input:checked + label {
-    background: var(--h1) !important;
+
+
+
+
+/*- - - - - WELCOME MENU - - - - -*/
+
+.fixed_welcomeMenu scroll {
+    height: unset;
+    max-height: 200px;
 }
+
+
+
+
 
 /*- - - - - ADD WORDS - - - - -*/
 
 #flex_addWords {
     --max: 350px;
+}
+
+.choice_addWords input:checked + label {
+    background: var(--h1) !important;
 }

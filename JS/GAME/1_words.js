@@ -2,7 +2,7 @@ var flex = $('#flex_addWords');
 var Ctextarea = 'textarea_addWords';
 var Cdiv = 'wordPatch_addWords';
 var initWordsPatchesCount = 3;
-var basicWords = wordsJSON;
+var WORDS = wordsJSON;
 var persoWords = {};
 
 $(function() {
@@ -60,19 +60,22 @@ function createWordsPatch(titleName) {
 
 function deleteEmptyWordsPatches() {
     // finds all empty div and deletes them
+    var correctWordsPatchesCount = 0;
     flex.find('.' + Cdiv).each(function() {
         var ths = $(this);
         var txta = ths.find('.' + Ctextarea).eq(0);
-        if (txta.val() == '')
-            ths.remove();
+        if (txta.val() == '') ths.remove();
+        else {
+            correctWordsPatchesCount ++;
+            ths.find('h3').eq(0).html('Groupe ' + correctWordsPatchesCount);
+        }
     });
 
-    // if count of divs (empty or not) is less than initWordsPatchesCount,
-    // appends the right amount of empty divs
-    var l = flex.find('.' + Cdiv).length;
-    if (l < initWordsPatchesCount) {
-        var c = initWordsPatchesCount - l;
-        for (var i = 0; i < c; i++) {
+    var toAdd = initWordsPatchesCount - correctWordsPatchesCount;
+    console.log(toAdd);
+
+    if (toAdd > 0) {
+        for (var i = 0; i < toAdd; i++) {
             var bp = createWordsPatch();
             flex.append(bp);
         }
@@ -81,6 +84,7 @@ function deleteEmptyWordsPatches() {
 
 
 
+//////////////
 /*
 
     VALIDATES the changed values of persoWords
@@ -93,7 +97,9 @@ function deleteEmptyWordsPatches() {
 
     if user wants to continue without adding words
     but words are detected in the textareas, makes sure
-    it is indeed what the user really wants to do*/
+    it is indeed what the user really wants to do
+
+*/
 function validateAddedWords() {
     $('#VALIDATE_addWords').click(function() {
         // persoWords is automatically cleaned
@@ -117,8 +123,9 @@ function validateAddedWords() {
                 if (words[i] != '') correctWords.push(words[i]);
             }
 
-            // adds it to persoWords
-            persoWords[patches] = correctWords;
+            // adds it to persoWords if there are at least 2 words in it
+            if (correctWords.length > 1)
+                persoWords[patches] = correctWords;
         });
 
         if (patches == 0) {

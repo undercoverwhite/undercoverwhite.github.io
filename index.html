@@ -71,6 +71,12 @@
         <section id="WELCOME_MENU" class="PHASE">
             <h1>Mr. White sous couverture</h1>
 
+            <div class="fixed_welcomeMenu simple light">
+                <scroll>
+                    Ici les règles. Ca arrive.
+                </scroll>
+            </div>
+
             <div class="flex">
                 <button class="simple hi1 background center-align GOTO_JS" next="plus2">
                     Commencer avec les mots par défaut.
@@ -122,12 +128,12 @@
             <div class="flex simple nopadding" id="lastOptions_addWords">
                 <button class="GOTO_JS display-none" id="realVALIDATE_addWords"></button>
 
+                <button class="simple hi4 background" id="emptyAll_addWords">
+                    Continuer sans rajouter de mots.
+                </button>
                 <button class="simple hi1 background" id="VALIDATE_addWords">
                     Valider
 
-                </button>
-                <button class="simple hi4 background" id="emptyAll_addWords">
-                    Continuer sans rajouter de mots.
                 </button>
             </div>
         </section>
@@ -138,32 +144,27 @@
             <h1>Joueur·se·s (min 3)</h1>
 
 
-            <div class="flex">
-                <div class="simple light">
-                    personne 1
-                </div>
-
-                <div class="simple light">
-                    personne 2
-                </div>
-
-                <div class="simple light">
-                    personne 3
-                </div>
-
-                <div class="simple light">
-                    personne 4
-                </div>
-
-                <fill></fill>
+            <h2>Noms des joueur·se·s</h2>
+            <div class="flex" id="flex_players">
+                <!--inputs rajoutés par JS-->
             </div>
 
+            <div class="simple nopadding flex">
+                <button class="simple hi3 background" id="addToFlex_players">Ajouter un·e joueur·se</button>
+                <button class="simple hi4 background" id="removeEmpty_players">Enlever tout·e·s les joueur·se·s vides</button>
+            </div>
+                <br>
+
+
+            <h2>Suite</h2>
             <div class="flex simple nopadding">
-                <button class="GOTO_JS simple hi2 background">
-                    Valider
-                </button>
+                <button class="GOTO_JS display-none" id="realVALIDATE_players"></button>
+
                 <button class="GOTO_JS simple hi4 background" next="moins1">
                     Retourner au choix des mots
+                </button>
+                <button class="simple hi2 background" id="VALIDATE_players">
+                    Valider
                 </button>
             </div>
         </section>
@@ -190,6 +191,7 @@
 
     <script src="./JS/GAME/0_phases.js"></script>
     <script src="./JS/GAME/1_words.js"></script>
+    <script src="./JS/GAME/2_players.js"></script>
 
 
     <script src="./JS/pages.js"></script>

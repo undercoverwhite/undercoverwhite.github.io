@@ -37,9 +37,14 @@ function setPHASE() {
         var ths = $(this);
         ths.attr('phase', count);
 
+        // DEFINES WHICH IS DISPLAYED BY DEFAULT
+        // (must be 0 for regular play)
+        // (modify here for debug)
         if (count != 0) {
             setHiddenPhase(ths);
             ths.removeClass('display-none');
+        } else {
+            setVisiblePhase(ths);
         }
 
         count ++;
