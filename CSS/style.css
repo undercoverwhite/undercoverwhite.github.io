@@ -428,6 +428,10 @@ input, button, textarea {
     line-height: var(--line-height-main);
 }
 
+textarea {
+    border: 0;
+}
+
 
 
 

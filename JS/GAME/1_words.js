@@ -111,18 +111,19 @@ function validateAddedWords() {
 
             // creates the array of words
             var words = txta.val().split("\n");
+            var correctWords = [];
             for (var i = 0; i < words.length; i++) {
                 words[i] = strip(words[i]);
+                if (words[i] != '') correctWords.push(words[i]);
             }
 
             // adds it to persoWords
-            persoWords[patches] = words;
+            persoWords[patches] = correctWords;
         });
 
         if (patches == 0) {
             // verifies if persoWords is empty; validates only if user is sure
             if (confirm('Continuer sans ajouter de mot personnel ? Les mots par défaut seront utilisés.')) {
-                console.log(persoWords);
                 $('#realVALIDATE_addWords').click();
             }
         } else {
@@ -150,7 +151,6 @@ function validateAddedWords() {
             if (confirm('Des mots semblent avoir été entrés. Continuer quand même ? Les mots par défaut seront utilisés.')) {
                 // validates and goes to next phase
                 cleanAllWords();
-                console.log(persoWords);
                 $('#realVALIDATE_addWords').click();
             }
         } else {
