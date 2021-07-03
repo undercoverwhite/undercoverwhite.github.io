@@ -19,7 +19,9 @@
 
     <!-------------------- SCRIPT IMPORT -------------------->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!--<script data-main = "scripts/main" src = "scripts/require.js"></script>-->
     <script src="JS/TOP/header.js"></script>
+    <script type="text/javascript" src="JS/TOP/words.JSON"></script>
 
 </head>
 
@@ -41,8 +43,38 @@
     </header>
 
     <main id="var_container">
-        <section id="CHARACTER_CHOOSE">
-            <div class="flex" style="--max: 120px;">
+
+        <section id="WELCOME_MENU" class="PHASE">
+            <h1>Mr. White sous couverture</h1>
+
+            <button class="simple hi1 background center-align GOTO_JS" next="plus2">
+                Commencer avec les mots par défaut.
+            </button>
+
+            <button class="simple hi2 background center-align GOTO_JS">
+                Commencer en rajoutant des mots personnels aux mots par défaut.
+            </button>
+        </section>
+
+        <section id="ADD_WORDS" class="PHASE">
+            <h1>Rajouter des mots</h1>
+            <textarea class="simple light" placeholder="Écrire ici vos mots, séparés d'un retour à la ligne."></textarea>
+
+            <div class="flex">
+                <button class="GOTO_JS simple hi1 background">
+                    Valider
+                </button>
+                <button class="GOTO_JS simple hi4 background">
+                    Continuer sans rajouter de mots.
+                </button>
+            </div>
+        </section>
+
+        <section id="CHARACTER_CHOOSE" class="PHASE display-none">
+            <h1>Joueur·se·s</h1>
+
+
+            <div class="flex">
                 <div class="simple light">
                     personne 1
                 </div>
@@ -59,10 +91,21 @@
                     personne 4
                 </div>
 
-
-
                 <fill></fill>
             </div>
+
+            <div class="flex">
+            <button class="GOTO_JS simple hi4 background" next="moins1">
+                Retourner au choix des mots
+            </button>
+                <button class="GOTO_JS simple hi1 background">
+                    Valider
+                </button>
+            </div>
+        </section>
+
+        <section id="NEXT" class="PHASE display-none">
+            BOUUUUUH
         </section>
     </main>
 
@@ -76,6 +119,7 @@
     <script src="./JS/BOTTOM/toggle_package.js"></script>
     <script src="./JS/BOTTOM/overall.js"></script>
     <script src="./JS/BOTTOM/color.js"></script>
+    <script src="./JS/GAME/0_phases.js"></script>
     <script src="./JS/pages.js"></script>
 
     <a name="bottom"></a>

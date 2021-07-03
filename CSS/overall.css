@@ -23,9 +23,14 @@ HTML, HTML *{
 body{
     padding: 50px;
     background: var(--background-body);
-    --background-body: #52807a;
+    --background-body: #40827a;
 
     --sq-global: 80px;
+}
+
+main {
+    height: 100%;
+    overflow: auto;
 }
 
 scroll{
@@ -186,7 +191,7 @@ k img{
   justify-content: space-between;
   flex-wrap: wrap;
   grid-gap: var(--grid-gap);
-  --max: 250px;
+  --max: 150px;
 }
 
 .flex.fixed {

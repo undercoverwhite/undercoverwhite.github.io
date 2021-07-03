@@ -1,0 +1,5 @@
+.PHASE {
+    height: 100%;
+    overflow: auto;
+    padding: var(--width-shadow-main);
+}
