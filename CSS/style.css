@@ -52,8 +52,8 @@ pal{ display: flex; flex-direction: column; width: 20px; height: 500px; position
 
     --color-main: var(--d3);
     --font-family-main: 'Mulish', 'Verdana', sans-serif;
-    --font-size-main: 20px;
-    --line-height-main: 28px;
+    --font-size-main: 1.2rem;
+    --line-height-main: 1.6rem;
     --text-align-main: justify;
 }
 
