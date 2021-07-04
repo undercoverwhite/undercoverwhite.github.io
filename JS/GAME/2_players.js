@@ -107,6 +107,8 @@ function validatePlayers() {
             if (lastCheck) {
                 if (confirm('Êtes-vous sûr·e de la configuration de votre jeux ? Vous ne pourrez plus revenir en arrière.')) {
                     concatenateWords();
+                    console.log(WORDS);
+                    console.log(PLAYERS);
                     $('#realVALIDATE_players').click();
                 }
             } else {
@@ -165,6 +167,6 @@ function createFinalPlayers() {
         };
         }
     });
-    
+
     return ok;
 };

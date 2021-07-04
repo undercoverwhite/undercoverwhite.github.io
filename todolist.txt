@@ -1,0 +1,34 @@
+AVANT-JEU
+    - rôles simples (underco & white)
+    - déterminer le rôle
+    - remplir le dico des mots par défaut
+        -> demander aux gus
+    - demander si veut partie courte (max X phases à demander)
+      ou partie normale (autant de phases que nécessaire)
+
+
+
+PHASES DE JEU
+    - qui commence
+    - minuteur pour les votes
+    - qui est éliminé.e
+        -> check si white : demander le mot
+        -> check si underco :
+            -> check si c'est le dernier underco :
+                si oui, fin + scores
+                si non, on continue
+
+
+
+FIN DE JEU
+    - relancer le jeu sans reprendre les mots déjà utilisés
+    - alerte quand tous les mots sont utilisés
+    - calcul des scores
+
+
+
+ÉVENTUEL
+    - des images partouuuuut
+        -> donner possibilité d'avoir sa propre icône ?
+    - des blagues
+    - rôles en plus ?
