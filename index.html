@@ -22,6 +22,7 @@
     <!--<script data-main = "scripts/main" src = "scripts/require.js"></script>-->
     <script src="JS/TOP/header.js"></script>
     <script type="text/javascript" src="JS/TOP/words.JSON"></script>
+    <script type="text/javascript" src="JS/TOP/roleList.JSON"></script>
 
 </head>
 
@@ -141,10 +142,13 @@
 
 
         <section id="CHARACTER_CHOOSE" class="PHASE display-none">
-            <h1>Joueur·se·s (min 3)</h1>
+            <h1>Joueur·se·s et rôles</h1>
 
 
             <h2>Noms des joueur·se·s</h2>
+            <qt>
+                Un minimum de 3 joueur·se·s est demandé.
+            </qt>
             <div class="flex" id="flex_players">
                 <!--inputs rajoutés par JS-->
             </div>
@@ -153,7 +157,20 @@
                 <button class="simple hi3 background" id="addToFlex_players">Ajouter un·e joueur·se</button>
                 <button class="simple hi4 background" id="removeEmpty_players">Enlever tout·e·s les joueur·se·s vides</button>
             </div>
-                <br>
+            <br>
+
+
+            <h2>Rôles</h2>
+            <qt>
+                Vous pouvez choisir ici le nombre de rôles pour vos parties. Vérifiez que le nombre de joueur·se·s correspond au nombre total de rôles disponibles.
+            </qt>
+            <div class="simple nopadding flex" id="flex_roles">
+                <!-- ROLES AJOUTÉS PAR JS SELON LES ROLES DANS ./JS/TOP/roleList.JSON
+                <div class="simple nopadding">
+                    <label for="ROLE_UNDERCOVER"><cv>Civilian</cv></label>
+                    <input class="simple small light" id="ROLE_UNDERCOVER" type="number" name="roles" min="0" value="3">
+                </div>-->
+            </div>
 
 
             <h2>Suite</h2>

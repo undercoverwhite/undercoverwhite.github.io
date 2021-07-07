@@ -1,7 +1,11 @@
 var flex = $('#flex_addWords');
 var Ctextarea = 'textarea_addWords';
 var Cdiv = 'wordPatch_addWords';
-var initWordsPatchesCount = 3;
+var initWordsPatchesCount = 0;
+
+for (role in rolesJSON)
+    initWordsPatchesCount += rolesJSON[role][1];
+
 var WORDS = wordsJSON;
 var persoWords = {};
 

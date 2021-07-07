@@ -1,15 +1,22 @@
 var initPlayersCount = 3;
 var flexp = $('#flex_players');
+var flexr = $('#flex_roles');
 var PLAYERS = {};
+var ROLES = rolesJSON;
 
 $(function() {
 
     // BEFORE USE
     setPlayers();
+    setRoles();
 
     // WHEN USED
     validatePlayers();
 });
+
+
+
+////////// SET PLAYERS SET PLAYERS SET PLAYERS //////////
 
 /*
     SETS :
@@ -36,11 +43,12 @@ function setPlayers() {
 }
 
 function createPlayer() {
-    var bp = create('input')
-    bp.addClass('simple light');
-    bp.attr('type', 'text');
     var count = flexp.find('input').length + 1;
-    bp.attr('placeholder', 'Joueur·se ' + count);
+    var bp =
+        create('input')
+            .addClass('simple light')
+            .attr('type', 'text')
+            .attr('placeholder', 'Joueur·se ' + count);
     return bp;
 }
 
@@ -74,7 +82,58 @@ function stripAllPlayers() {
 
 
 
-//////////////
+////////// SET ROLES SET ROLES SET ROLES //////////
+
+function setRoles() {
+    for (role in ROLES) {
+        var list = ROLES[role];
+        addRole(list[0], list[1]);
+    }
+}
+
+/*
+    CREATES and add the roles for the game
+    given the ./JS/TOP/roleList.JSON
+*/
+
+function addRole(name, minValue) {
+    var bp = create('div').addClass('simple nopadding');
+    bp.append(
+        createHTML('cv', name)
+            .addClass('name')
+    );
+
+    bp.append(
+        create('input')
+            .addClass('simple small light')
+            .attr('type', 'number')
+            .attr('name', 'roles')
+            .attr('min', minValue)
+            .attr('value', minValue)
+
+            // prevents from going lower than input[min]
+            .bind('change', notLower)
+    );
+
+    flexr.append(bp);
+}
+
+/*
+    VERIFIES if the value of an input isn't lower than
+    min required; if so, fixes it to min required
+*/
+
+function notLower() {
+    var ths = $(this);
+    var val = parseInt(ths.val());
+    var min = parseInt(ths.attr('min'));
+    if (val < min) ths.val(min);
+}
+
+
+
+////////// VALIDATE VALIDATE VALIDATE //////////
+
 /*
 
     VALIDATES the names of the players
@@ -91,14 +150,21 @@ function validatePlayers() {
     $('#VALIDATE_players').click(function() {
 
         // counts how many non null inputs there are
-        var count = 0;
+        var playersCount = 0;
         flexp.find('input').each(function() {
-            if ($(this).val() != '') count ++;
+            if ($(this).val() != '') playersCount ++;
+        });
+
+        var rolesCount = 0;
+        flexr.find('input').each(function() {
+            rolesCount += parseInt($(this).val());
         });
 
         // alerts if there aren't enough players
-        if (count < initPlayersCount) {
+        if (playersCount < initPlayersCount) {
             alert('Veuillez entrer au moins ' + initPlayersCount + ' joueur·se·s.');
+        } else if (rolesCount != playersCount) {
+            alert("Il n'y a pas autant de rôles que de joueur·se·s.");
         } else {
 
             // tries to add the players to the PLAYER = {}
@@ -106,9 +172,17 @@ function validatePlayers() {
             var lastCheck = createFinalPlayers();
             if (lastCheck) {
                 if (confirm('Êtes-vous sûr·e de la configuration de votre jeux ? Vous ne pourrez plus revenir en arrière.')) {
+
+                    // FINAL CALCULS ::
+
+                    // choose the total list of words
                     concatenateWords();
+
+                    // define the roles for each and everyone
+                    defineRoles();
                     console.log(WORDS);
                     console.log(PLAYERS);
+                    console.log(ROLES);
                     $('#realVALIDATE_players').click();
                 }
             } else {
@@ -170,3 +244,41 @@ function createFinalPlayers() {
 
     return ok;
 };
+
+function defineRoles() {
+    var roles = [];
+
+    flexr.find('div').each(function() {
+        // finds each role div, its name & its number
+        var ths = $(this);
+        var input = ths.find('input').eq(0);
+        var name = ths.find('.name').eq(0).html();
+        var number = parseInt(input.val());
+
+        // updates roles
+        for (var i = 0; i < number; i++) {
+            roles.push(name);
+        }
+
+        // updates number of roles in ROLES
+        for (role in ROLES) {
+            if (ROLES[role][0] == name)
+                ROLES[role][1] = number;
+        }
+    });
+
+
+
+    // updates players roles
+    for (player in PLAYERS) {
+        var l = roles.length;
+        var rd = random(0, l - 1);
+        var randomRole = roles[rd];
+
+        // deletes roles[rd]
+        roles.splice(rd, 1);
+
+        // attributes role
+        PLAYERS[player]["role"] = randomRole;
+    }
+}
