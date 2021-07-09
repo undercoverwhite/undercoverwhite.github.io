@@ -1,11 +1,13 @@
-var initPlayersCount = 3;
+// sets the minimam players count
+var initPlayersCount = 0;
+for (role in rolesJSON)
+    initPlayersCount += rolesJSON[role][1];
+
 var flexp = $('#flex_players');
 var flexr = $('#flex_roles');
-var PLAYERS = {};
-var ROLES = rolesJSON;
+var rolesArray = [];
 
 $(function() {
-
     // BEFORE USE
     setPlayers();
     setRoles();
@@ -40,6 +42,9 @@ function setPlayers() {
     $('#removeEmpty_players').click(function() {
         deleteEmptyPlayers();
     });
+
+    /// fills .players_count_js
+    $('.players_count_js').append(initPlayersCount);
 }
 
 function createPlayer() {
@@ -174,15 +179,8 @@ function validatePlayers() {
                 if (confirm('Êtes-vous sûr·e de la configuration de votre jeux ? Vous ne pourrez plus revenir en arrière.')) {
 
                     // FINAL CALCULS ::
+                    VALIDATE();
 
-                    // choose the total list of words
-                    concatenateWords();
-
-                    // define the roles for each and everyone
-                    defineRoles();
-                    console.log(WORDS);
-                    console.log(PLAYERS);
-                    console.log(ROLES);
                     $('#realVALIDATE_players').click();
                 }
             } else {
@@ -246,7 +244,7 @@ function createFinalPlayers() {
 };
 
 function defineRoles() {
-    var roles = [];
+    rolesArray = [];
 
     flexr.find('div').each(function() {
         // finds each role div, its name & its number
@@ -255,9 +253,8 @@ function defineRoles() {
         var name = ths.find('.name').eq(0).html();
         var number = parseInt(input.val());
 
-        // updates roles
         for (var i = 0; i < number; i++) {
-            roles.push(name);
+            rolesArray.push(name);
         }
 
         // updates number of roles in ROLES
@@ -266,19 +263,37 @@ function defineRoles() {
                 ROLES[role][1] = number;
         }
     });
+}
 
-
-
+function setPlayersRoles() {
     // updates players roles
     for (player in PLAYERS) {
-        var l = roles.length;
+        var l = rolesArray.length;
         var rd = random(0, l - 1);
-        var randomRole = roles[rd];
+        var randomRole = rolesArray[rd];
 
-        // deletes roles[rd]
-        roles.splice(rd, 1);
+        // deletes rolesArray[rd]
+        rolesArray.splice(rd, 1);
 
         // attributes role
         PLAYERS[player]["role"] = randomRole;
     }
+}
+
+function VALIDATE() {
+    // choose the total list of words
+    setsDefaultWORDS();
+    concatenateWords();
+
+    // define the roles given the users choices
+    setsDefaultROLES();
+    defineRoles();
+
+    // sets roles for each and every players
+    setPlayersRoles();
+
+    // debug:: shows final dictionnaries
+    console.log(WORDS);
+    console.log(PLAYERS);
+    console.log(ROLES);
 }

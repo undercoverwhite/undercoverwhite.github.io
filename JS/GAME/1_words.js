@@ -1,16 +1,11 @@
 var flex = $('#flex_addWords');
 var Ctextarea = 'textarea_addWords';
 var Cdiv = 'wordPatch_addWords';
-var initWordsPatchesCount = 0;
+var initWordsPatchesCount = 3;
 
-for (role in rolesJSON)
-    initWordsPatchesCount += rolesJSON[role][1];
-
-var WORDS = wordsJSON;
 var persoWords = {};
 
 $(function() {
-
     // BEFORE USE
     setFlexAddWords();
 
@@ -76,7 +71,6 @@ function deleteEmptyWordsPatches() {
     });
 
     var toAdd = initWordsPatchesCount - correctWordsPatchesCount;
-    console.log(toAdd);
 
     if (toAdd > 0) {
         for (var i = 0; i < toAdd; i++) {

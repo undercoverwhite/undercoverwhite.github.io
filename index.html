@@ -147,7 +147,7 @@
 
             <h2>Noms des joueur·se·s</h2>
             <qt>
-                Un minimum de 3 joueur·se·s est demandé.
+                Un minimum de <span class="players_count_js"></span> joueur·se·s est demandé.
             </qt>
             <div class="flex" id="flex_players">
                 <!--inputs rajoutés par JS-->
@@ -188,8 +188,36 @@
 
 
 
-        <section id="NEXT" class="PHASE display-none">
-            <button class="GOTO_JS simple light">bouh</button>
+        <section id="GAME_1" class="PHASE display-none">
+            <h1>Choisis ton rôle</h1>
+
+            <div class="popuptrigger" id="startChoosing">
+                <button class="ON display-none player">
+                </button>
+                <div class="POPUP table_js scroll_js simple hi2 background center-align">
+                    <button class="OFF simple hi1 background">x</button>
+                    <h2 class="center-align name"></h2>
+                    <span class="text">Il est temps de choisir votre rôle !</span>
+                </div>
+            </div>
+
+
+            <div class="simple nopadding flex" id="flex_cards">
+                <fill></fill>
+                <fill></fill>
+                <fill></fill>
+                <fill></fill>
+                <fill></fill>
+                <fill></fill>
+                <fill></fill>
+                <fill></fill>
+                <fill></fill>
+                <fill></fill>
+
+            </div>
+
+
+            <button class="GOTO_JS simple hi1 background">bouh</button>
         </section>
 
 
@@ -212,9 +240,11 @@
     <script src="./JS/BOTTOM/color.js"></script>
 
 
+    <script src="./JS/GAME/0_global_variables.js"></script>
     <script src="./JS/GAME/0_phases.js"></script>
     <script src="./JS/GAME/1_words.js"></script>
     <script src="./JS/GAME/2_players.js"></script>
+    <script src="./JS/GAME/3_cards.js"></script>
 
 
     <script src="./JS/pages.js"></script>

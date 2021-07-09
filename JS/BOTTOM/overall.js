@@ -3,6 +3,8 @@ $(setBasicClasses());
 $(setAddBefore());
 $(setVariables('vr'));
 
+$(setPOPUP());
+
 function setBasicClasses() {
     $('.table_js').wrapInner('<table><tr><td></table></tr></td>');
     $('.scroll_js').wrapInner('<scroll></scroll>');
@@ -103,4 +105,28 @@ function setVariables(name) {
             $(this).append(element);
         });
     });
+}
+
+function setPOPUP() {
+    $('.popuptrigger').each(function() {
+        createPOPUP($(this));
+    });
+}
+
+function createPOPUP(ths) {
+    var on = ths.find('.ON').eq(0);
+    var off = ths.find('.OFF').eq(0);
+    var popup = ths.find('.POPUP').eq(0);
+
+    on.click(function() {
+        ths.addClass('displayed');
+        popup.addClass('displayed');
+    });
+
+    off.click(function() {
+        ths.removeClass('displayed');
+        popup.removeClass('displayed');
+    });
+
+    return ths;
 }
