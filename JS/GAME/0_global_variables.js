@@ -1,6 +1,7 @@
 var WORDS = {};
 var PLAYERS = {};
 var ROLES = {};
+var GOODWORDS = ['', ''];
 
 $(function() {
     // COPIES WORDS AND ROLES

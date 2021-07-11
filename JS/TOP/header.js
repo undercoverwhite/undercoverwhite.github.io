@@ -10,6 +10,29 @@ function createA(href, text) {return createHTML('a', text).attr('href', href);};
 
 function strip(s){return ( s || '' ).replace( /^\s+|\s+$/g, '' );}
 
+function lenDic(d) {
+    /*return Object.keys(d).length;*/
+    var c = 0;
+    for (var i in d) c++;
+    return c;
+}
+
+function shift(arr, i) {
+    return arr.splice(i, 1)[0];
+}
+
+function copy(array) {
+    var copied = [];
+
+    for (var c of array) {
+        if (Array.isArray(c))
+            copied.push(copy(c));
+        else copied.push(c);
+    }
+
+    return copied;
+}
+
 
 // returns a random int [min; max]
 function random(min, max) {

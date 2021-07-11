@@ -1,7 +1,7 @@
 // sets the minimam players count
 var initPlayersCount = 0;
 for (role in rolesJSON)
-    initPlayersCount += rolesJSON[role][1];
+    initPlayersCount += rolesJSON[role][0];
 
 var flexp = $('#flex_players');
 var flexr = $('#flex_roles');
@@ -92,7 +92,7 @@ function stripAllPlayers() {
 function setRoles() {
     for (role in ROLES) {
         var list = ROLES[role];
-        addRole(list[0], list[1]);
+        addRole(role, list[0]);
     }
 }
 
@@ -100,7 +100,6 @@ function setRoles() {
     CREATES and add the roles for the game
     given the ./JS/TOP/roleList.JSON
 */
-
 function addRole(name, minValue) {
     var bp = create('div').addClass('simple nopadding');
     bp.append(
@@ -127,7 +126,6 @@ function addRole(name, minValue) {
     VERIFIES if the value of an input isn't lower than
     min required; if so, fixes it to min required
 */
-
 function notLower() {
     var ths = $(this);
     var val = parseInt(ths.val());
@@ -150,7 +148,6 @@ function notLower() {
     is concatenated with the potential personal words.
 
 */
-
 function validatePlayers() {
     $('#VALIDATE_players').click(function() {
 
@@ -193,10 +190,9 @@ function validatePlayers() {
 }
 
 function concatenateWords() {
-    // WORDS is defined in ./1_words.js
-
-    var lenW = Object.keys(WORDS).length;
-    var lenPW = Object.keys(persoWords).length;
+    // WORDS is defined in ./0_global_variables.js
+    var lenW = lenDic(WORDS);
+    var lenPW = lenDic(persoWords);
 
     var combine = Boolean($('#inp1_addWords').prop('checked'));
     var persoExists = Boolean(lenPW > 0);
@@ -234,9 +230,11 @@ function createFinalPlayers() {
 
         // fills the PLAYERS with the [name]
         PLAYERS[name] = {
-            'points': 0,
-            'role': null
-        };
+                'points': 0,
+                'role': null,
+                'word': null,
+                'explanation': null
+            };
         }
     });
 
@@ -259,25 +257,11 @@ function defineRoles() {
 
         // updates number of roles in ROLES
         for (role in ROLES) {
-            if (ROLES[role][0] == name)
-                ROLES[role][1] = number;
+            if (role == name) ROLES[role][0] = number;
+            /*if (ROLES[role][0] == name)
+                ROLES[role][1] = number;*/
         }
     });
-}
-
-function setPlayersRoles() {
-    // updates players roles
-    for (player in PLAYERS) {
-        var l = rolesArray.length;
-        var rd = random(0, l - 1);
-        var randomRole = rolesArray[rd];
-
-        // deletes rolesArray[rd]
-        rolesArray.splice(rd, 1);
-
-        // attributes role
-        PLAYERS[player]["role"] = randomRole;
-    }
 }
 
 function VALIDATE() {
@@ -288,12 +272,16 @@ function VALIDATE() {
     // define the roles given the users choices
     setsDefaultROLES();
     defineRoles();
+}
 
-    // sets roles for each and every players
-    setPlayersRoles();
-
-    // debug:: shows final dictionnaries
+function debugLog() {
+    console.log('WORDS');
     console.log(WORDS);
+    console.log('PLAYERS');
     console.log(PLAYERS);
+    console.log('ROLES');
     console.log(ROLES);
+    console.log('GOOD - BAD WOORD');
+    console.log(GOODWORDS);
+    console.log('------------');
 }

@@ -1,16 +1,26 @@
 var flexc = $('#flex_cards');
 var choose = $('#startChoosing');
 var playersList = [];
+var wordsRemaining = [];
 
 // SET ALL
 $(function() {
-    //debugSet();
-    
+
     // triggers the phase
     $('#realVALIDATE_players').click(function() {
+        var l = lenDic(WORDS);
+        for (var i = 1; i <= l; i++)
+            wordsRemaining.push(i);
+        defineWords();
+        setPlayersRoles();
         setCards();
         chooseCards();
+
+        // debug:: shows final dictionnaries
+        debugLog();
     });
+
+    //debugSet();
 });
 
 
@@ -18,26 +28,80 @@ $(function() {
 ////////// DEBUG DEBUG DEBUG //////////
 
 function debugSet() {
-    names = ["Albane", "Bobby", "Caleb"];
-    roles = ["Civilian", "Undercover", "Civilian"]
+    rolesArray = ["Civilian", "Undercover", "Civilian"]
 
-    for (var i = 0; i < names.length; i++) {
-        PLAYERS[names[i]] = {
-            "points": 0,
-            "role": roles[i]
+    PLAYERS = {
+            "Albane" : {"points": 0, "role": null, "word": null},
+            "Bobby" : {"points": 0, "role": null, "word": null},
+            "Caleb" : {"points": 0, "role": null, "word": null}
         }
-    }
 
-    console.log(WORDS);
-    console.log(PLAYERS);
-    console.log(ROLES);
+    debugLog();
 
-    chooseCards();
+    $('#realVALIDATE_players').click();
 }
 
 
 
-////////// SET CARDS SET CARDS SET CARDS //////////
+////////// SET GAME SET GAME SET GAME //////////
+
+function defineWords() {
+
+    // IF WORDS IS EMPTY -> should refresh page
+    if (lenDic(WORDS) == 0) {
+        return;
+    }
+
+    // automatically empties GOODWORDS
+    GOODWORDS = ['', ''];
+
+    // find random set of words (WORDS[index])
+    var rd = random(0, wordsRemaining.length - 1);
+    var index = wordsRemaining[rd];
+
+    // makes sure it's not chosen ever again
+    shift(wordsRemaining, rd);
+
+    // verifies if set of words contains at least 2 words
+    // if not, deletes it and chooses again
+    if (WORDS[index].length <= 1) {
+        delete WORDS[index];
+        defineWords();
+        return;
+    }
+
+    // choses right (GOODWORDS[0]) and wrong (GOODWORDS[1]) words
+    // then deletes the set of words
+    for (var i = 0; i < 2; i++) {
+        rd = random(0, WORDS[index].length - 1);
+        GOODWORDS[i] = WORDS[index][rd];
+        shift(WORDS[index], rd);
+    }
+    delete WORDS[index];
+}
+
+function setPlayersRoles() {
+    var rls = copy(rolesArray);
+    // updates players roles
+    for (player in PLAYERS) {
+        var l = rls.length;
+        var rd = random(0, l - 1);
+        var randomRole = rls[rd];
+
+        // deletes rolesArray[rd]
+        shift(rls, rd);
+
+        // attributes role
+        PLAYERS[player]["role"] = randomRole;
+        PLAYERS[player]["explanation"] = ROLES[randomRole][1];
+
+        // attributes role and word (left null if Mr. White)
+        if (randomRole == "Undercover")
+            PLAYERS[player]["word"] = GOODWORDS[1];
+        else if (randomRole != "Mr. White")
+            PLAYERS[player]["word"] = GOODWORDS[0];
+    }
+}
 
 function setCards() {
 
@@ -162,12 +226,17 @@ function updateCardPlayer(ths) {
     bp.find('.absolute .name').eq(0).html(name);
 
     // modifies popup : role name
-    bp.find('.POPUP .name').eq(0).html(
-        PLAYERS[name]["role"]
-    );
+    var title = "";
+    var expl = PLAYERS[name]["explanation"];
+    if (PLAYERS[name]["role"] == "Mr. White") {
+        title = "Mr. White";
+    } else {
+        title = PLAYERS[name]["word"];
+    }
+    bp.find('.POPUP .name').eq(0).html(title);
 
     // modifies popup : txt
-    bp.find('.POPUP .txt').append("Est votre rôle");
+    bp.find('.POPUP .txt').append(expl);
 
     // deactivates .ON trigger & style of button
     inp.unbind('click');

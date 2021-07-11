@@ -1,5 +1,5 @@
 rolesJSON = {
-	"1": ["Civilian", 2],
-	"2": ["Undercover", 1],
-	"3": ["Mr. White", 0]
+	"Civilian" :  [2, "est votre mot."],
+	"Undercover" :  [1, "est votre mot."],
+	"Mr. White" :  [0, "est votre rôle. Votre but est de découvrir le véritable mot des Civilians de la partie."]
 }
