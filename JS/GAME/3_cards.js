@@ -17,23 +17,35 @@ $(function() {
         chooseCards();
 
         // debug:: shows final dictionnaries
-        debugLog();
+        //debugLog();
     });
 
-    //debugSet();
+    debugSet3();
 });
 
 
 
 ////////// DEBUG DEBUG DEBUG //////////
 
-function debugSet() {
-    rolesArray = ["Civilian", "Undercover", "Civilian"]
+function debugSet3() {
+    rolesArray = [
+        "Civilian",
+        "Undercover",
+        "Civilian",
+        "Civilian",
+        "Mr. White",
+        "Civilian",
+        "Civilian"
+    ]
 
     PLAYERS = {
             "Albane" : {"points": 0, "role": null, "word": null},
             "Bobby" : {"points": 0, "role": null, "word": null},
-            "Caleb" : {"points": 0, "role": null, "word": null}
+            "Caleb" : {"points": 0, "role": null, "word": null},
+            "Dylan" : {"points": 0, "role": null, "word": null},
+            "Emma" : {"points": 0, "role": null, "word": null},
+            "Fred" : {"points": 0, "role": null, "word": null},
+            "Gabriel" : {"points": 0, "role": null, "word": null}
         }
 
     debugLog();
@@ -164,7 +176,7 @@ function chooseCards() {
             -> deletes the player from playersList
 */
 function newPlayerChooses() {
-    var smallTiming = 700;
+    var smallTiming = 500;
     var longTiming = 3000;
 
     // IF END
