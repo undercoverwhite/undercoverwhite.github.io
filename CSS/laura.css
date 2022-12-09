@@ -1,0 +1,103 @@
+:root {
+    --pink: #df4dd3;
+    --pink-light: #54204f;
+    --yellow: #ffff74;
+    --blue: #7ae2ff;
+}
+
+body {
+    background: var(--pink);
+    padding: 40px;
+
+    color: var(--yellow);
+    font-family: 'Comic Sans MS', Calibri, sans-serif;
+    
+}
+
+body, button {
+    font-size: clamp(20px, 340%, 50px);
+}
+
+main {
+    max-width: 1400px;
+    margin: auto;
+}
+
+a {
+    color: var(--blue);
+}
+
+audio {
+    display: block;
+    width: 100%;
+    margin: 40px auto;
+}
+
+.intro {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    box-shadow: 0 0 30px var(--yellow);
+    border-radius: 40px;
+}
+
+ul.slider {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.slider > li:not(.displayed) {
+    display: none;
+}
+
+.slider > li.displayed {
+    display: block !important;
+}
+
+.slider__grid {
+    display: grid;
+    grid-template:
+        "tit tit" auto
+        "txt txt" auto
+        "but but" auto
+        / 1fr 1fr;
+    grid-gap: 20px;
+    padding: 40px;
+    border-radius: 40px;
+    box-shadow: 0 0 30px var(--yellow);
+    background: var(--blue);
+    color: var(--pink-light);
+}
+
+.slider__prev {
+    grid-area: prev;
+}
+
+.slider__next {
+    grid-area: next;
+}
+
+.slider__text {
+    grid-area: txt;
+}
+
+.slider__tit {
+    grid-area: tit;
+}
+
+h2 {
+    margin: 0 auto 20px;
+    text-shadow: 0 0 3px var(--yellow);
+}
+
+.slider__buttons {
+    grid-area: but;
+    display: flex;
+    flex-flow: row wrap;
+    gap: 20px;
+}
+
+.slider__buttons > * {
+    flex: 1;
+}
