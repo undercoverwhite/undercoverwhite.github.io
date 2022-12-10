@@ -3,6 +3,10 @@
     --pink-light: #54204f;
     --yellow: #ffff74;
     --blue: #7ae2ff;
+    --darkblue: #0f728e;
+
+    --green: rgb(105, 155, 83);
+    --grey: rgb(116, 116, 116);
 }
 
 body {
@@ -11,11 +15,22 @@ body {
 
     color: var(--yellow);
     font-family: 'Comic Sans MS', Calibri, sans-serif;
-    
+
 }
 
 body, button {
-    font-size: clamp(20px, 340%, 50px);
+    font-size: clamp(20px, 340%, 36px);
+}
+
+button {
+    border: 0;
+    box-shadow: 0 0 3px white;
+    border-radius: 20px;
+    color: white;
+}
+
+button:hover {
+    cursor: crosshair;
 }
 
 main {
@@ -24,7 +39,8 @@ main {
 }
 
 a {
-    color: var(--blue);
+    color: var(--darkblue);
+    text-decoration: none;
 }
 
 audio {
@@ -72,10 +88,12 @@ ul.slider {
 
 .slider__prev {
     grid-area: prev;
+    background: var(--grey);
 }
 
 .slider__next {
     grid-area: next;
+    background: var(--green);
 }
 
 .slider__text {
