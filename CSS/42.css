@@ -1,0 +1,49 @@
+:root {
+    --col0: #FF6600;
+    --col1: #e0752d;
+    --col2: #fd7b23;
+    --col3: #ff8400;
+    --col4: #fc8c41;
+    --col5: #ff5900;
+    --col6: #f17d2f;
+    --col7: #e77103;
+    --col8: #da6110;
+    --col9: #ff4400;
+}
+
+html {
+    font-family: 'Comic Sans MS';
+}
+
+body {
+    margin: 0;
+    padding: 10vw;
+}
+
+.center-align {
+    text-align: center;
+}
+
+ul.unset {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.border-bottom {
+    border-bottom: 1px solid;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.selected {
+    background: rgb(94, 159, 182);
+}
