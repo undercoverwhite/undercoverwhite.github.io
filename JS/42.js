@@ -1,13 +1,14 @@
 const body = $('body');
 const color = 'var(--col0)';
 const reload = $('.js-reload');
-let colorIsRight = false;
 const yes = $('.js-yes');
 const no = $('.js-no');
 const result = $('.js-result');
 const game = $('.js-game');
 const start = $('.js-start');
 const options = $('.js-options');
+let colorIsRight = false;
+let last = 20;
 
 $(function() {
 
@@ -40,7 +41,10 @@ $(function() {
 
 function changeRandomBackground() {
     result.removeClass('hidden');
-    let rand = random(0, 9);
+    let rand;
+    do {
+        rand = random(0, 9);
+    } while (last == rand);
     let col = `var(--col${rand})`;
     body.css('background', col);
     if (col == color) return true;
@@ -50,7 +54,6 @@ function changeRandomBackground() {
 function checkAnswer(answer) {
     yes.attr('disabled', 'true');
     no.attr('disabled', 'true');
-    console.log(`color : ${colorIsRight} - answer : ${answer}`);
     if (colorIsRight && answer) {
         result.html(`La bonne couleur (aka #FF6600) est trouvée !`);
     } else if ((!colorIsRight) && (!answer)) {
