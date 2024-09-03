@@ -58,6 +58,14 @@ img {
     object-fit: cover;
 }
 
+.card--voucher .title {
+    color: var(--n0);
+}
+
+.card--voucher .subtitle {
+    color: var(--n2);
+}
+
 .title {
     color: var(--n9);
     font-size: 18px;
@@ -67,6 +75,14 @@ img {
 .subtitle {
     color: var(--color-light);
     font-size: 0.8;
+}
+
+.light-color {
+    color: var(--col2);
+}
+
+.card--voucher .light-color {
+    color: var(--col1);
 }
 
 a {
@@ -81,7 +97,7 @@ a {
 
 
 
-/*------------------------------ CARDS ------------------------------
+/*------------------------------ GRID ------------------------------
 -------------------------------------------------------------------*/
 
 .grid {
@@ -94,6 +110,16 @@ a {
     gap: 50px;
 
 }
+
+
+
+
+
+
+
+
+/*------------------------------ CARDS ------------------------------
+-------------------------------------------------------------------*/
 
 .card {
     display: grid;
@@ -122,6 +148,10 @@ a {
 
 .card:hover::before {
     box-shadow: var(--box-shadow);
+}
+
+.card.card--voucher::before {
+    background: var(--col3);
 }
 
 
@@ -237,6 +267,12 @@ a {
     position: relative;
 }
 
+.card--voucher .numbers {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 .numbers::before {
     display: block;
     content: '';
@@ -247,10 +283,14 @@ a {
     height: 100%;
     top: 0;
     left: 0;
-    background: var(--col2);
+    background: var(--col1);
     border-top-right-radius: var(--br1);
 
     transition: var(--transition);
+}
+
+.card--voucher .numbers::before {
+    content: unset !important;
 }
 
 .card:hover .numbers::before {
@@ -303,24 +343,32 @@ a {
     color: var(--col0);
 }
 
+.card--voucher .numbers__displayed {
+    color: var(--n0);
+}
+
 .numbers__button {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 0;
     height: 0;
-    background: var(--col1);
+    background: var(--n0);
     border-radius: 50%;
     text-align: center;
     overflow: hidden;
 
     cursor: pointer;
 
-    color: var(--n0);
+    color: var(--col2);
 
     transition: var(--transition);
 
     --sq: 20px;
+}
+
+.numbers__button:hover {
+    color: var(--col4);
 }
 
 .card:hover .numbers__button {
@@ -332,16 +380,13 @@ a {
     min-width: 120px;
     padding: var(--br0) var(--br1);
     border-radius: 0 var(--br2) var(--br2) var(--br2);
-    background: var(--col1);
+    background: var(--col2);
     grid-area: 1/-1;
     transition: var(--transition);
     
     color: var(--n0);
     font-weight: 600;
     text-align: right;
-}
-
-.card:hover .infos-card__price {
 }
 
 .infos-card__price::after {
